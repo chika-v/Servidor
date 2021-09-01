@@ -66,3 +66,7 @@ app.delete('/paises/:pais', function (req, res) {
     }
     res.send(db.respuesta);
 })
+
+app.get('/canciones', function (req, res) {
+    res.send(db.Canciones)
+})
