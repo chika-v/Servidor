@@ -1,4 +1,6 @@
 let Paises = {};
+let Canciones = {};
+
 let Id = {
     cont: 0
 }
@@ -34,4 +36,4 @@ const borraPais = function (nombre) {
     delete Paises[nombre]
 }
 
-module.exports = {Paises,respuesta,nuevoPais,buscaPais,borraPais}
+module.exports = {Paises,respuesta,nuevoPais,buscaPais,borraPais,Canciones}
