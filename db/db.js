@@ -31,8 +31,7 @@ const buscaPais = function (nombre) {
 }
 
 const borraPais = function (nombre) {
-    delete Pais[nombre]
-    
+    delete Paises[nombre]
 }
 
 module.exports = {Paises,respuesta,nuevoPais,buscaPais,borraPais}
