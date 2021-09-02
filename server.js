@@ -1,12 +1,18 @@
 const express = require("express");
 const dotenv = require('dotenv');
 const db = require('./db/db');
+const midd = require('./middlewares/midd');
 
 const app = express();
 
 dotenv.config();
+
 //Configuramos JSON como lenguaje de comunicación
+
 app.use(express.json());
+
+app.use(midd.log);
+
 app.listen(process.env.PORT, function () {
     console.log(`Servidor iniciado en http://${process.env.HOST}:${process.env.PORT}`)
 });
@@ -21,7 +27,7 @@ app.get('/paises', function (req, res) {
     res.send(db.Paises)
 })
 
-app.post('/paises', function (req, res) {
+app.post('/paises',midd.Autenticar, function (req, res) {
     if (!req.body.nombre || !req.body.codigo) {
         db.respuesta = {
             codigo: 502,
@@ -65,8 +71,4 @@ app.delete('/paises/:pais', function (req, res) {
         }
     }
     res.send(db.respuesta);
-})
-
-app.get('/canciones', function (req, res) {
-    res.send(db.Canciones)
 })
