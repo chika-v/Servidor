@@ -1,4 +1,4 @@
-let Paises = {};
+let Productos = {};
 let Id = {
     cont: 0
 }
@@ -9,29 +9,29 @@ let respuesta = {
     mensaje:''
 }
 
-class Pais {
-    constructor(nombre,codigo_pais){
+class Producto {
+    constructor(nombre,codigo_producto){
         this.nombre = nombre
-        this.codigo_pais = codigo_pais
+        this.codigo_producto = codigo_producto
         this.Id = Id.cont
     }
 }
 
-const nuevoPais = function(nombre, codigo_pais){
-    Paises[nombre] = new Pais(nombre,codigo_pais);
+const nuevoProducto = function(nombre, codigo_producto){
+    Productos[nombre] = new Producto(nombre,codigo_producto);
     Id.cont++
 }
 
-const buscaPais = function (nombre) {
-    if(Paises.hasOwnProperty(nombre)){
+const buscaProducto = function (nombre) {
+    if(Productos.hasOwnProperty(nombre)){
         return true;
     }else{
         return false;
     } 
 }
 
-const borraPais = function (nombre) {
-    delete Paises[nombre]
+const borraProducto = function (nombre) {
+    delete Productos[nombre]
 }
 
-module.exports = {Paises,respuesta,nuevoPais,buscaPais,borraPais}
+module.exports = {Productos,respuesta,nuevoProducto,buscaProducto,borraProducto}

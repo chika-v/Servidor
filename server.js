@@ -22,52 +22,52 @@ app.get('/', function (req, res) {
     res.send(db.respuesta);
 })
 
-//Endpoint para obtener paises de la DB
-app.get('/paises', function (req, res) {
-    res.send(db.Paises)
+//Endpoint para obtener productos de la DB
+app.get('/productos', function (req, res) {
+    res.send(db.Productos)
 })
 
-app.post('/paises',midd.Autenticar, function (req, res) {
+app.post('/prpductos',midd.Autenticar, function (req, res) {
     if (!req.body.nombre || !req.body.codigo) {
         db.respuesta = {
             codigo: 502,
             error: true,
-            mensaje: 'Es indispensable enviar nombre y código del país'
+            mensaje: 'Es indispensable enviar nombre y código del producto'
         }
     } else {
-        if (db.buscaPais(req.body.nombre)) {
+        if (db.buscaProducto(req.body.nombre)) {
             db.respuesta = {
                 codigo: 503,
                 error: true,
-                mensaje: 'País ya registrado'
+                mensaje: 'Producto registrado'
             }
         } else {
-            db.nuevoPais(req.body.nombre, req.body.codigo)
+            db.nuevoProducto(req.body.nombre, req.body.codigo)
 
             db.respuesta = {
                 codigo: 200,
                 error: false,
-                mensaje: '¨País creado'
+                mensaje: '¨Producto creado'
             }
         }
     }
     res.send(db.respuesta)
 })
 
-app.delete('/paises/:pais', function (req, res) {
+app.delete('/productos/:producto', function (req, res) {
 
-    if (!db.buscaPais(req.params.pais)) {
+    if (!db.buscaProducto(req.params.producto)) {
         db.respuesta = {
             codigo: 500,
             error: true,
-            mensaje: req.params.pais
+            mensaje: req.params.producto
         }
     } else {
-        db.borraPais(req.params.pais)
+        db.borraProducto(req.params.producto)
         db.respuesta = {
             codigo: 200,
             error: false,
-            mensaje: '¨País eliminado'
+            mensaje: '¨Producto eliminado'
         }
     }
     res.send(db.respuesta);
